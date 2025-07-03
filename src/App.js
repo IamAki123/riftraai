@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
-import logo from "./logo.png"; // Your PNG logo file in src folder
+import logo from "./logo.png"; // Your PNG logo in src folder
 
 function App() {
   const [query, setQuery] = useState("");
@@ -28,6 +28,15 @@ function App() {
     setLoading(false);
   }
 
+  // Load/refresh ads on component mount and tracks update
+  useEffect(() => {
+    try {
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    } catch (e) {
+      console.error("Adsense error:", e);
+    }
+  }, [tracks]);
+
   return (
     <div className="app-container">
       <header className="app-header">
@@ -43,11 +52,7 @@ function App() {
             onChange={(e) => setQuery(e.target.value)}
             className="search-input-header"
           />
-          <button
-            type="submit"
-            disabled={loading}
-            className="search-button-header"
-          >
+          <button type="submit" disabled={loading} className="search-button-header">
             {loading ? "Searching..." : "Search"}
           </button>
         </form>
@@ -57,9 +62,7 @@ function App() {
         <section className="tracks-list">
           {error && <div className="error-message">{error}</div>}
 
-          {tracks.length === 0 && !loading && (
-            <p>No results yet. Try searching!</p>
-          )}
+          {tracks.length === 0 && !loading && <p>No results yet. Try searching!</p>}
 
           {tracks.map((track) => (
             <div key={track.id} className="track-item">
@@ -81,8 +84,14 @@ function App() {
         </section>
 
         <aside className="ad-spot">
-          {/* Replace with actual ad code */}
-          <div className="ad-placeholder">Your Ad Here</div>
+          <ins
+            className="adsbygoogle"
+            style={{ display: "block" }}
+            data-ad-client="ca-pub-3935409732244380"
+            data-ad-slot="9009199662"  // Replace with your own slot ID
+            data-ad-format="auto"
+            data-full-width-responsive="true"
+          ></ins>
         </aside>
       </div>
 
