@@ -1,9 +1,25 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import logo from "./logo.png";
 
-function Home() {
+function NativeAd() {
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.async = true;
+    script.setAttribute("data-cfasync", "false");
+    script.src = "//pl27068108.profitableratecpm.com/3f6410faeea12eaa2856eaaed15f74a5/invoke.js";
+
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
+  return <div id="container-3f6410faeea12eaa2856eaaed15f74a5"></div>;
+}
+
+function App() {
   const [query, setQuery] = useState("");
   const [tracks, setTracks] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -82,43 +98,14 @@ function Home() {
         </section>
 
         <aside className="ad-spot">
-          {/* Replace with actual ad code */}
-          <div className="ad-placeholder">Your Ad Here</div>
+          <NativeAd />
         </aside>
       </div>
 
       <footer className="app-footer">
-        &copy; {new Date().getFullYear()} RiftraAI. All rights reserved.{" "}
-        <Link to="/privacy-policy" className="footer-link">
-          Privacy Policy
-        </Link>
+        &copy; {new Date().getFullYear()} RiftraAI. All rights reserved.
       </footer>
     </div>
-  );
-}
-
-function PrivacyPolicy() {
-  return (
-    <div className="privacy-policy-container">
-      <h2>Privacy Policy</h2>
-      <p>
-        {/* Paste your full privacy policy here */}
-        This Privacy Policy explains how RiftraAI collects, uses, and protects your information. 
-        For questions, contact us at <a href="mailto:akashvijayaradhya@gmail.com">akashvijayaradhya@gmail.com</a>.
-      </p>
-      {/* Add the rest of your privacy policy here */}
-    </div>
-  );
-}
-
-function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-      </Routes>
-    </Router>
   );
 }
 

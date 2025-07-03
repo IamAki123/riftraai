@@ -99,8 +99,7 @@ body, html, #root {
   display: flex;
   gap: 20px;
   padding: 20px;
-  /* full height minus header/footer */
-  height: calc(100vh - 70px - 40px); /* adjust header/footer height */
+  height: calc(100vh - 70px - 40px);
   box-sizing: border-box;
 }
 
@@ -150,6 +149,9 @@ body, html, #root {
   justify-content: center;
   align-items: center;
   padding: 20px;
+  /* allow the ad div inside to scroll if big */
+  overflow-y: auto;
+  max-height: calc(100vh - 70px - 40px);
 }
 
 /* Footer */
@@ -191,25 +193,4 @@ body, html, #root {
     overflow-y: auto;
     margin-bottom: 20px;
   }
-}
-
-.footer-link {
-  color: #fff;
-  margin-left: 10px;
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-.footer-link:hover {
-  color: #f8bbd0;
-  text-decoration: none;
-}
-
-/* Add some padding to privacy-policy page for better look */
-.privacy-policy-container {
-  padding: 20px;
-  max-width: 800px;
-  margin: 20px auto;
-  font-size: 16px;
-  line-height: 1.6;
 }
