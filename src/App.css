@@ -1,0 +1,194 @@
+/* Basic reset */
+* {
+  box-sizing: border-box;
+}
+
+body, html, #root {
+  height: 100%;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  background-color: #fff;
+  color: #333;
+}
+
+/* Main container: full height and flex column */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* Header: flex with space-between */
+.app-header {
+  background-color: #d32f2f;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.app-logo {
+  height: 40px;
+  width: 40px;
+  object-fit: contain;
+}
+
+.app-title {
+  font-size: 1.6rem;
+  margin: 0;
+  font-weight: 700;
+}
+
+/* Search form on right side of header, about 25% width */
+.search-form-header {
+  display: flex;
+  gap: 8px;
+  flex: 0 0 25%;
+  min-width: 250px;
+}
+
+.search-input-header {
+  flex: 1;
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 2px solid #fff;
+  border-radius: 4px;
+  outline-offset: 2px;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #333;
+  transition: border-color 0.3s ease;
+}
+
+.search-input-header:focus {
+  border-color: #b71c1c;
+}
+
+.search-button-header {
+  background-color: #fff;
+  border: none;
+  color: #d32f2f;
+  padding: 0 18px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-button-header:disabled {
+  background-color: #f28b82;
+  cursor: not-allowed;
+}
+
+.search-button-header:hover:not(:disabled) {
+  background-color: #b71c1c;
+  color: white;
+}
+
+/* Content area below header, above footer */
+.content-area {
+  flex: 1;
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  /* full height minus header/footer */
+  height: calc(100vh - 70px - 40px); /* adjust header/footer height */
+  box-sizing: border-box;
+}
+
+/* Tracks list on left (takes 75%) with scroll */
+.tracks-list {
+  flex: 3;
+  overflow-y: auto;
+  border: 1px solid #d32f2f;
+  border-radius: 8px;
+  background-color: #fff3f3;
+  padding: 15px;
+}
+
+/* Individual track styling */
+.track-item {
+  margin-bottom: 15px;
+  padding: 12px 15px;
+  border: 1px solid #d32f2f;
+  border-radius: 6px;
+  background-color: #fff;
+}
+
+.track-links {
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.track-links a {
+  color: #d32f2f;
+  text-decoration: none;
+}
+
+.track-links a:hover {
+  text-decoration: underline;
+}
+
+/* Ad box on right (takes 25%) */
+.ad-spot {
+  flex: 1;
+  min-width: 250px;
+  border: 2px dashed #d32f2f;
+  border-radius: 8px;
+  background-color: #ffeaea;
+  color: #b71c1c;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Footer */
+.app-footer {
+  background-color: #b71c1c;
+  color: white;
+  text-align: center;
+  padding: 10px 20px;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .app-header {
+    flex-wrap: wrap;
+  }
+
+  .search-form-header {
+    flex: 1 1 100%;
+    min-width: 0;
+    margin-top: 10px;
+  }
+
+  .content-area {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .tracks-list, .ad-spot {
+    flex: none;
+    width: 100%;
+    min-width: unset;
+    height: auto;
+  }
+
+  .tracks-list {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+  }
+}
