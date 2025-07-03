@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import "./App.css";
-import logo from "./logo.png"; // Your PNG logo in src folder
+import logo from "./logo.png";
 
-function App() {
+function Home() {
   const [query, setQuery] = useState("");
   const [tracks, setTracks] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -28,15 +29,6 @@ function App() {
     setLoading(false);
   }
 
-  // Load/refresh ads on component mount and tracks update
-  useEffect(() => {
-    try {
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
-    } catch (e) {
-      console.error("Adsense error:", e);
-    }
-  }, [tracks]);
-
   return (
     <div className="app-container">
       <header className="app-header">
@@ -52,7 +44,11 @@ function App() {
             onChange={(e) => setQuery(e.target.value)}
             className="search-input-header"
           />
-          <button type="submit" disabled={loading} className="search-button-header">
+          <button
+            type="submit"
+            disabled={loading}
+            className="search-button-header"
+          >
             {loading ? "Searching..." : "Search"}
           </button>
         </form>
@@ -62,7 +58,9 @@ function App() {
         <section className="tracks-list">
           {error && <div className="error-message">{error}</div>}
 
-          {tracks.length === 0 && !loading && <p>No results yet. Try searching!</p>}
+          {tracks.length === 0 && !loading && (
+            <p>No results yet. Try searching!</p>
+          )}
 
           {tracks.map((track) => (
             <div key={track.id} className="track-item">
@@ -84,21 +82,43 @@ function App() {
         </section>
 
         <aside className="ad-spot">
-          <ins
-            className="adsbygoogle"
-            style={{ display: "block" }}
-            data-ad-client="ca-pub-3935409732244380"
-            data-ad-slot="9009199662"  // Replace with your own slot ID
-            data-ad-format="auto"
-            data-full-width-responsive="true"
-          ></ins>
+          {/* Replace with actual ad code */}
+          <div className="ad-placeholder">Your Ad Here</div>
         </aside>
       </div>
 
       <footer className="app-footer">
-        &copy; {new Date().getFullYear()} RiftraAI. All rights reserved.
+        &copy; {new Date().getFullYear()} RiftraAI. All rights reserved.{" "}
+        <Link to="/privacy-policy" className="footer-link">
+          Privacy Policy
+        </Link>
       </footer>
     </div>
+  );
+}
+
+function PrivacyPolicy() {
+  return (
+    <div className="privacy-policy-container">
+      <h2>Privacy Policy</h2>
+      <p>
+        {/* Paste your full privacy policy here */}
+        This Privacy Policy explains how RiftraAI collects, uses, and protects your information. 
+        For questions, contact us at <a href="mailto:akashvijayaradhya@gmail.com">akashvijayaradhya@gmail.com</a>.
+      </p>
+      {/* Add the rest of your privacy policy here */}
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+      </Routes>
+    </Router>
   );
 }
 
