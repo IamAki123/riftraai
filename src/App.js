@@ -114,18 +114,12 @@ function PrivacyPolicy() {
 function App() {
   return (
     <Router>
-      <header>
-        {/* Add a footer or header link to privacy page */}
-        <Link to="/privacy">Privacy Policy</Link>
-      </header>
-
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
       </Routes>
     </Router>
   );
 }
-
 
 export default App;
